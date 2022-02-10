@@ -11,6 +11,7 @@
                     cols="2"
                     v-for="(item, index) in pokemonList"
                     :key="`${item.name}-${index}`"
+                    class="d-flex justify-center align-center"
                 >
                     <div v-if="loading">
                         <div class="skeleton-box image-box"></div>
@@ -139,8 +140,8 @@ export default {
         }
     }
     .image-box {
-        width: 170px;
-        height: 140px;
+        width: 200px;
+        height: 180px;
         border-radius: 7px;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         display: flex;
@@ -148,7 +149,7 @@ export default {
         align-items: center;
     }
     .name-box {
-        width: 170px;
+        width: 200px;
         height: 40px;
         border-radius: 7px;
         font-weight: bold;
