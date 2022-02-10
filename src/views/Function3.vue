@@ -8,16 +8,16 @@
 			</v-row>
             <v-row>
                 <v-col offset="2">
-                    <p>Array 1: [] --> </p>
-                    <p>Array 2: [1] --> </p>
-                    <p>Array 3: [1,2,3] --> </p>
-                    <p>Array 4: [1,1] --> </p>
-                    <p>Array 5: [1,2,3,4,5,6] --> </p>
-                    <p>Array 6: [1,5,3,2,5,10] --> </p>
-                    <p>Array 7: [100,5,3,2,99] --> </p>
-                    <p>Array 8: [35,35,5,3,2,5,100] --> </p>
-                    <p>Array 9: [1,5,101,2,5,10] --> </p>
-                    <p>Array 10: [10,10,9,9] --> </p>
+                    <p>Array 1: [] --> {{ testFunction(this.arr1) }}</p>
+                    <p>Array 2: [1] --> {{ testFunction(this.arr2) }}</p>
+                    <p>Array 3: [1,2,3] --> {{ testFunction(this.arr3) }}</p>
+                    <p>Array 4: [1,1] --> {{ testFunction(this.arr4) }}</p>
+                    <p>Array 5: [1,2,3,4,5,6] --> {{ testFunction(this.arr5) }}</p>
+                    <p>Array 6: [1,5,3,2,5,10] --> {{ testFunction(this.arr6) }}</p>
+                    <p>Array 7: [100,5,3,2,99] --> {{ testFunction(this.arr7) }}</p>
+                    <p>Array 8: [35,5,3,2,5,100] --> {{ testFunction(this.arr8) }}</p>
+                    <p>Array 9: [1,5,101,2,5,10] --> {{ testFunction(this.arr9) }}</p>
+                    <p>Array 10: [10,10,9] --> {{ testFunction(this.arr10) }}</p>
                 </v-col>
             </v-row>
         </v-col>
@@ -36,32 +36,45 @@ export default {
 			arr5: [1,2,3,4,5,6],
 			arr6: [1,5,3,2,5,10],
 			arr7: [100,5,3,2,99],
-			arr8: [35,35,5,3,2,5,100],
+			arr8: [35,5,3,2,5,100],
 			arr9: [1,5,101,2,5,10],
-			arr10: [10,10,9,9]
+			arr10: [10,10,9]
 		}
 	},
-	created() {
-		const arr = this.arr10
-		const n = arr.length
-		this.testFunction(arr, n)
-	},
 	methods: {
-		testFunction (arr, arrSize) {
-			let max = null, result = null
-            
-			for (const value of arr) {
-				if (arrSize === 0) {
-					result = null
-				} else if (arrSize === 1) {
-					result = arr[0]
-				} else if (value > max) {
-					[result, max] = [max, value]
-				} else if (value < max && value > result) {
-					result = value
+		testFunction (arr) {
+			let max = 0
+			let result = 0
+			let array = []
+			let beforeMax = 0
+
+			array = arr
+			if (array.length === 0) {
+				result = null
+				return result
+			} else if (array.length === 1) {
+				result = array[0]
+				return result
+			}
+
+			for (let index = 0; index < array.length; index++) {
+				const element = array[index]
+
+				if (element >= max) {
+					beforeMax = max
+					max = element
+				}
+
+				if (element < max && element > result) {
+					result = element
+				} else if (beforeMax < max) {
+					result = beforeMax
+				} else {
+					result = element
 				}
 			}
-			console.log('result -->', result)
+			
+			return result
 		}
 	},
 }

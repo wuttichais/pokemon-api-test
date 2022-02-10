@@ -1,21 +1,20 @@
 <template>
     <v-row>
-        <v-col cols="8" class="container">
+        <v-col cols="6" class="container">
             <v-row>
 				<v-col cols="12" class="d-flex justify-center mb-5">
 					<span class="title-form">Function 1</span>
 				</v-col>
 			</v-row>
-            <v-row>
+            <v-row class="mb-5">
                 <v-col
-                    offset="2"
-                    cols="4"
+                    cols="6"
                     v-for="(item, index) in newProductData"
                     :key="`${item.name}-${index}`"
                 >
                     <v-card
                         class="mx-auto"
-                        max-width="344"
+                        max-width="400"
                     >
                         <v-card-text>
                             <p class="product-name">
