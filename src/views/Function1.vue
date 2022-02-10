@@ -8,6 +8,7 @@
 			</v-row>
             <v-row>
                 <v-col
+                    offset="2"
                     cols="4"
                     v-for="(item, index) in newProductData"
                     :key="`${item.name}-${index}`"
