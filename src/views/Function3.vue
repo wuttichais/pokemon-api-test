@@ -42,13 +42,13 @@ export default {
 		}
 	},
 	methods: {
-		testFunction (arr) {
-			let max = 0
-			let result = 0
-			let array = []
-			let beforeMax = 0
+		testFunction (arrayData) {
+			let max = 0, 
+				result = 0, 
+				array = [], 
+				beforeMax = 0
 
-			array = arr
+			array = arrayData
 			if (array.length === 0) {
 				result = null
 				return result
@@ -65,12 +65,10 @@ export default {
 					max = element
 				}
 
-				if (element < max && element > result) {
+				if ((element < max && element > result) || beforeMax === max) {
 					result = element
 				} else if (beforeMax < max) {
 					result = beforeMax
-				} else {
-					result = element
 				}
 			}
 			
